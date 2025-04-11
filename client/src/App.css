@@ -1,0 +1,336 @@
+:root {
+  /* Light theme variables */
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --text-color: #2c3e50;
+  --background-gradient: linear-gradient(135deg, #3498db, #2c3e50);
+  --card-background: rgba(255, 255, 255, 0.1);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+/* Dark theme variables */
+.dark-mode {
+  --primary-color: #ecf0f1;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --text-color: #ecf0f1;
+  --background-gradient: linear-gradient(135deg, #2c3e50, #1a1a1a);
+  --card-background: rgba(255, 255, 255, 0.05);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Light theme specific */
+.light-mode {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --text-color: #2c3e50;
+  --background-gradient: linear-gradient(135deg, #3498db, #2c3e50);
+  --card-background: rgba(255, 255, 255, 0.1);
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  transition: var(--transition);
+}
+
+.App {
+  min-height: 100vh;
+  background: var(--background-gradient);
+  color: var(--text-color);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.header-content {
+  text-align: center;
+  margin-bottom: 3rem;
+  animation: fadeIn 1s ease-in;
+}
+
+.App-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--card-background);
+  border: none;
+  border-radius: 25px;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: var(--transition);
+  margin-top: 1rem;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.theme-icon {
+  font-size: 1.2rem;
+}
+
+.search-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+}
+
+.search-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--card-background);
+  border-radius: 10px;
+  margin-top: 0.5rem;
+  box-shadow: var(--shadow);
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.suggestion-item {
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.suggestion-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+
+.search-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+  background: white;
+}
+
+.search-button {
+  padding: 1rem 2rem;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: var(--transition);
+  box-shadow: var(--shadow);
+}
+
+.search-button:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.search-button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.weather-card {
+  background: var(--card-background);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+  animation: slideUp 0.5s ease-out;
+}
+
+.weather-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.weather-header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.temperature {
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.weather-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.weather-condition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.weather-condition img {
+  width: 100px;
+  height: 100px;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.weather-condition span {
+  font-size: 1.2rem;
+  text-transform: capitalize;
+}
+
+.weather-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.stat {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.stat:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.stat span:first-child {
+  display: block;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.5rem;
+}
+
+.stat span:last-child {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.error-message {
+  background-color: rgba(231, 76, 60, 0.2);
+  color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  text-align: center;
+  animation: shake 0.5s ease-in-out;
+}
+
+.search-error {
+  color: #ff6b6b;
+  margin-top: 1rem;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .App {
+    padding: 1rem;
+  }
+
+  .search-bar {
+    flex-direction: column;
+  }
+
+  .search-button {
+    width: 100%;
+  }
+}
